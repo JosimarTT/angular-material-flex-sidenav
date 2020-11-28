@@ -1,0 +1,30 @@
+<form [formGroup]="componentFormGroup">
+  <mat-form-field appearance="{{ appearance }}" fxFlex fxFlexFill>
+    <mat-label>{{ label }}</mat-label>
+    <input
+      maxlength="{{ textLimit }}"
+      matInput
+      placeholder="{{ placeholder }}"
+      formControlName="{{ partialFormControlName }}"
+    />
+
+    <span matPrefix>{{ prefix }}</span>
+    <mat-icon matSuffix>{{ icon }}</mat-icon>
+
+    <mat-error
+      *ngIf="
+        required &&
+        componentFormGroup.get(partialFormControlName).hasError('required')
+      "
+    >
+      This field is required.
+    </mat-error>
+    <mat-error
+      *ngIf="
+        componentFormGroup.get(partialFormControlName).hasError('minlength')
+      "
+    >
+      Invalid value.
+    </mat-error>
+  </mat-form-field>
+</form>

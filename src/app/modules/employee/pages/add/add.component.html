@@ -1,0 +1,176 @@
+<h1>Form</h1>
+
+<form [formGroup]="employeeForm">
+  <mat-card class="mat-elevation-z4">
+    <div
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayoutGap="50px"
+    >
+      <div fxLayout="column" fxFlex>
+        <mat-card-header>
+          <mat-card-title>Admin Information</mat-card-title>
+        </mat-card-header>
+        <app-shared-reactive-input
+          (componentReady)="addChild('adminUserName', $event)"
+          (valueChange)="userRequest.adminUserName = $event"
+          appearance="outline"
+          icon="edit"
+          label="Admin User Name"
+          required
+          minLength="1"
+          partialFormControlName="adminUserName"
+          prefix="odsi_dmn/"
+        >
+        </app-shared-reactive-input>
+        <mat-form-field appearance="outline">
+          <mat-label>Admin Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="adminPassword"
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{
+            hide ? 'visibility_off' : 'visibility'
+          }}</mat-icon>
+          <mat-error
+            *ngIf="employeeForm.get('adminPassword').hasError('required')"
+          >
+            This field is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxFlex>
+        <mat-card-header>
+          <mat-card-title>Employee General Information</mat-card-title>
+        </mat-card-header>
+        <app-shared-reactive-input
+          (componentReady)="addChild('userName', $event)"
+          (valueChange)="userRequest.userName = $event"
+          appearance="outline"
+          icon="edit"
+          label="User Name"
+          required
+          minLength="1"
+          partialFormControlName="userName"
+          prefix="odsi_dmn/"
+        >
+        </app-shared-reactive-input>
+        <app-shared-reactive-input
+          (componentReady)="addChild('userCode', $event)"
+          (valueChange)="userRequest.userCode = $event"
+          appearance="outline"
+          icon="edit"
+          label="User Code"
+          required
+          minLength="4"
+          partialFormControlName="userCode"
+          textLimit="4"
+        >
+        </app-shared-reactive-input>
+      </div>
+
+      <div fxLayout="column" fxFlex>
+        <mat-card-header>
+          <mat-card-title>Employee Office Information</mat-card-title>
+        </mat-card-header>
+        <div>
+          <mat-form-field appearance="outline" fxFlex fxFlexFill>
+            <mat-label>Start of Office Hours</mat-label>
+            <input
+              matInput
+              [ngxTimepicker]="startTime"
+              [format]="24"
+              readonly
+              formControlName="fcStartTime"
+            />
+            <mat-icon matSuffix>schedule</mat-icon>
+            <mat-error
+              *ngIf="employeeForm.get('fcStartTime').hasError('required')"
+            >
+              This field is required.
+            </mat-error>
+          </mat-form-field>
+          <ngx-material-timepicker
+            #startTime
+            [minutesGap]="5"
+            [appendToInput]="true"
+            (timeSet)="userRequest.schedule.startTime = $event"
+          >
+          </ngx-material-timepicker>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" fxFlex fxFlexFill>
+            <mat-label>Office Hours</mat-label>
+            <input
+              matInput
+              [ngxTimepicker]="officeHoursEdit"
+              [format]="24"
+              readonly
+              formControlName="fcOfficeTime"
+            />
+            <mat-icon matSuffix>schedule</mat-icon>
+            <mat-error
+              *ngIf="employeeForm.get('fcOfficeTime').hasError('required')"
+            >
+              This field is required.
+            </mat-error>
+          </mat-form-field>
+          <ngx-material-timepicker
+            #officeHoursEdit
+            [minutesGap]="5"
+            [appendToInput]="true"
+            (timeSet)="userRequest.schedule.officeTime = $event"
+          ></ngx-material-timepicker>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" fxFlex fxFlexFill>
+            <mat-label>Validation Span</mat-label>
+            <input
+              matInput
+              [ngxTimepicker]="endTime"
+              [format]="24"
+              readonly
+              formControlName="fcValidationSpan"
+            />
+            <mat-icon matSuffix>schedule</mat-icon>
+            <mat-error
+              *ngIf="employeeForm.get('fcValidationSpan').hasError('required')"
+            >
+              This field is required.
+            </mat-error>
+          </mat-form-field>
+          <ngx-material-timepicker
+            #endTime
+            [minutesGap]="30"
+            [appendToInput]="true"
+            (timeSet)="newValidationSpan = $event"
+          >
+          </ngx-material-timepicker>
+        </div>
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayoutAlign="center"
+      fxLayoutGap="20px"
+    >
+      <button mat-raised-button fxFlex fxFlexFill hidden></button>
+      <button mat-raised-button fxFlex fxFlexFill hidden></button>
+      <button mat-raised-button fxFlex fxFlexFill hidden></button>
+      <button
+        mat-raised-button
+        color="primary"
+        fxFlex
+        fxFlexFill
+        (click)="submit()"
+      >
+        Add Employee
+      </button>
+    </div>
+  </mat-card>
+</form>

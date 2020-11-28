@@ -1,0 +1,126 @@
+<h1>GENERAL INFORMATION</h1>
+
+<mat-card class="mat-elevation-z4">
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="20px"
+  >
+    <mat-form-field appearance="outline" fxFlex fxFlexFill>
+      <mat-label>Full Name</mat-label>
+      <input matInput [value]="userResponse.fullName" readonly />
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex fxFlexFill>
+      <mat-label>User Code</mat-label>
+      <input matInput [value]="userResponse.userCode" readonly />
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex fxFlexFill>
+      <mat-label>Schedule</mat-label>
+      <input matInput [value]="schedule" readonly />
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex fxFlexFill>
+      <mat-label>Office Hours</mat-label>
+      <input matInput [value]="officeHours" readonly />
+    </mat-form-field>
+  </div>
+</mat-card>
+
+<br />
+<br />
+<h1>SCHEDULE</h1>
+
+<mat-card class="mat-elevation-z4">
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="20px"
+  >
+    <div fxFlex fxFlexFill>
+      <mat-form-field appearance="outline" fxFlex fxFlexFill>
+        <mat-label>Start of Office Hours</mat-label>
+        <input
+          matInput
+          [ngxTimepicker]="startTime"
+          [value]="newStartOfficeHours"
+          [format]="24"
+          readonly
+        />
+        <mat-icon matSuffix>schedule</mat-icon>
+      </mat-form-field>
+      <ngx-material-timepicker
+        #startTime
+        [minutesGap]="5"
+        [appendToInput]="true"
+        (timeSet)="newStartOfficeHours = $event"
+      >
+      </ngx-material-timepicker>
+    </div>
+
+    <div fxFlex fxFlexFill>
+      <mat-form-field appearance="outline" fxFlex fxFlexFill>
+        <mat-label>Office Hours</mat-label>
+        <input
+          matInput
+          [ngxTimepicker]="officeHoursEdit"
+          [value]="newOfficeHours"
+          [format]="24"
+          readonly
+        />
+        <mat-icon matSuffix>schedule</mat-icon>
+      </mat-form-field>
+      <ngx-material-timepicker
+        #officeHoursEdit
+        [minutesGap]="5"
+        [appendToInput]="true"
+        (timeSet)="newOfficeHours = $event"
+      ></ngx-material-timepicker>
+    </div>
+
+    <div fxFlex fxFlexFill>
+      <mat-form-field appearance="outline" fxFlex fxFlexFill>
+        <mat-label>Validation Span</mat-label>
+        <input
+          matInput
+          [ngxTimepicker]="endTime"
+          [value]="newValidationSpan"
+          [format]="24"
+          readonly
+        />
+        <mat-icon matSuffix>schedule</mat-icon>
+      </mat-form-field>
+      <ngx-material-timepicker
+        #endTime
+        [minutesGap]="30"
+        [appendToInput]="true"
+        (timeSet)="newValidationSpan = $event"
+      >
+      </ngx-material-timepicker>
+    </div>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="20px"
+  >
+    <button mat-raised-button fxFlex fxFlexFill hidden></button>
+    <button mat-raised-button fxFlex fxFlexFill hidden></button>
+    <button mat-raised-button fxFlex fxFlexFill hidden></button>
+    <button
+      mat-raised-button
+      color="primary"
+      fxFlex
+      fxFlexFill
+      hidden
+      (click)="edit()"
+    >
+      Edit
+    </button>
+  </div>
+</mat-card>

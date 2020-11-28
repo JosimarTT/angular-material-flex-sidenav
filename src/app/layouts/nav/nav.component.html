@@ -1,0 +1,100 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <div>
+      <h1 id="sideNav-title">WIC Monitoría</h1>
+      <div fxLayout fxLayoutAlign="flex-start center">
+        <mat-divider
+          fxFlexFill
+          style="height: 20px; margin: 0 5px; width: 90%"
+        ></mat-divider>
+      </div>
+      <div id="sideNav-userName">Josimar J. Tantahuilca Torres</div>
+      <mat-divider></mat-divider>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <button mat-button class="text-light" (click)="redirect(node.path)">
+            {{ node.name }}
+          </button>
+        </mat-tree-node>
+        <mat-tree-node
+          *matTreeNodeDef="let node; when: hasChild"
+          matTreeNodePadding
+        >
+          <button
+            class="text-light"
+            mat-button
+            matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name"
+          >
+            {{ node.name }}
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{
+                treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'
+              }}
+            </mat-icon>
+          </button>
+        </mat-tree-node>
+      </mat-tree>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <button
+        mat-mini-fab
+        (click)="animate = !animate; drawer.toggle()"
+        style="background-color: white"
+      >
+        <app-shared-animated-mat-icon
+          start="more_vert"
+          end="list"
+          class="color-gray"
+          [animate]="animate"
+          animateFromParent="true"
+        ></app-shared-animated-mat-icon>
+      </button>
+
+      <span
+        id="navTitle"
+        class="color-gray text-light"
+        style="margin-left: 1rem; font-size: 1.125rem"
+        >Dashboard</span
+      >
+
+      <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <mat-icon class="color-gray">person</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item class="color-gray">
+            Log Out&nbsp;<mat-icon>power_settings_new</mat-icon>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <main style="margin: 1.5rem 1.5rem 0 1.5rem">
+      <!-- <div fxFlex></div>
+      <div fxFlex="90" fxFlex.md="90" fxFlex.xs="90">
+        <router-outlet></router-outlet>
+      </div>
+      <div fxFlex></div> -->
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

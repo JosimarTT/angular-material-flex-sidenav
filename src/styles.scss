@@ -1,0 +1,52 @@
+@import 'styles-variables';
+@import '~@angular/material/theming';
+
+html,
+body {
+  height: 100%;
+  background-color: $body-color;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+mat-sidenav-content {
+  background-color: $body-color;
+}
+
+mat-toolbar {
+  background-color: $body-color !important;
+}
+
+.color-gray {
+  color: $color-gray;
+}
+
+.text-light {
+  font-weight: lighter;
+}
+
+.mat-drawer-inner-container {
+  background: $wic-main-color;
+  background: linear-gradient(
+      0deg,
+      rgba($wic-main-color, 0.5) 0%,
+      rgb(255, 255, 255, 0.5) 100%
+    ),
+    url('assets/images/wic.png') no-repeat bottom;
+}
+
+.mat-card-avatar {
+  background-color: $wic-main-color;
+  padding: 10px;
+  margin-top: -35px;
+  border-radius: 4px !important;
+  @include mat-elevation(4);
+}
+
+.mat-card-avatar > .mat-icon {
+  color: white;
+  margin: 9px 0 0 9px;
+}
