@@ -19,8 +19,13 @@
       <mat-divider></mat-divider>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <button mat-button class="text-light" (click)="redirect(node.path)">
-            {{ node.name }}
+          <button
+            mat-button
+            class="text-light"
+            [ngClass]="{ 'background-highlight': activeNode === node }"
+            (click)="redirect(node.path); activeNode = node"
+          >
+            <span class="txtColor">{{ node.name }}</span>
           </button>
         </mat-tree-node>
         <mat-tree-node

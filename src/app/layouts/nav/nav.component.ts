@@ -60,7 +60,7 @@ export class NavComponent {
     );
 
   animate = false;
-
+  activeNode: ExampleFlatNode;
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     (node) => node.level,
     (node) => node.expandable,
