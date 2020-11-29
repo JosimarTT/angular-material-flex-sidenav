@@ -1,48 +1,96 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar>
-      <mat-icon fontSet="fas" fontIcon="fa-edit"></mat-icon>
-    </div>
-    <mat-card-title class="color-gray text-light">Import Period</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
+<div>
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon fontSet="fas" fontIcon="fa-edit"></mat-icon>
+      </div>
+      <mat-card-title class="color-gray text-light"
+        >Import Period</mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="center center"
+        fxLayoutGap="20px grid"
+      >
+        <mat-form-field appearance="outline" fxFlex fxFlexFill>
+          <mat-label
+            >Quarter&nbsp;<span class="required-text">*</span></mat-label
+          >
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex fxFlexFill>
+          <mat-label>Year&nbsp;<span class="required-text">*</span></mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex fxFlexFill>
+          <mat-label
+            >Quantity of Cases&nbsp;<span class="required-text"
+              >*</span
+            ></mat-label
+          >
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
     <div
-      fxLayout="row wrap"
-      fxLayoutAlign="center center"
-      fxLayoutGap="20px grid"
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayoutAlign="end"
+      fxLayoutGap="20px"
     >
-      <mat-form-field appearance="outline" fxFlex fxFlexFill>
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex fxFlexFill>
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex fxFlexFill>
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex fxFlexFill>
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex fxFlexFill>
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex fxFlexFill>
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex fxFlexFill>
-        <mat-label>Input</mat-label>
-        <input matInput />
-      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="showImport = !showImport"
+      >
+        CALCULATE
+      </button>
     </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+  </mat-card>
+</div>
+
+<div *ngIf="showImport">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon fontSet="fas" fontIcon="fa-edit"></mat-icon>
+      </div>
+      <mat-card-title class="color-gray text-light"
+        >Case Categories</mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="center center"
+        fxLayoutGap="20px grid"
+      >
+        <mat-form-field appearance="outline" fxFlex fxFlexFill>
+          <mat-label>Quarter*</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex fxFlexFill>
+          <mat-label>Year*</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex fxFlexFill>
+          <mat-label>Quantity of Cases*</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <div
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayoutAlign="end"
+      fxLayoutGap="20px"
+    >
+      <button mat-button>RESET</button>
+      <button mat-raised-button color="primary">IMPORT</button>
+    </div>
+  </mat-card>
+</div>

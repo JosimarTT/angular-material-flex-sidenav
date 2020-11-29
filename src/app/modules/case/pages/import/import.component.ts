@@ -7,8 +7,7 @@ import { setNavTitle } from 'src/app/helpers/general-helper';
   styleUrls: ['./import.component.scss'],
 })
 export class ImportComponent implements OnInit {
-  constructor() {}
-
+  showImport = false;
   ngOnInit(): void {
     setNavTitle('Case Import');
   }

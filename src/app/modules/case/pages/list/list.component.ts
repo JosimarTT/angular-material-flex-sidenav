@@ -7,8 +7,6 @@ import { setNavTitle } from 'src/app/helpers/general-helper';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor() {}
-
   ngOnInit(): void {
     setNavTitle('Case List');
   }
