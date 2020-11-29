@@ -1,9 +1,11 @@
 <mat-card>
   <mat-card-header>
     <div mat-card-avatar>
-      <mat-icon>analytics</mat-icon>
+      <mat-icon fontSet="fas" fontIcon="fa-table"></mat-icon>
     </div>
-    <mat-card-title class="color-gray text-light">Test </mat-card-title>
+    <mat-card-title class="color-gray text-light"
+      >Total Cases reviewed by Clinic</mat-card-title
+    >
   </mat-card-header>
   <mat-card-content>
     <div
@@ -14,24 +16,26 @@
     >
       <div fxLayout="column" fxFlex="70">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
-          <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef>No.</th>
-            <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-          </ng-container>
-
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <th mat-header-cell *matHeaderCellDef>Clinic</th>
             <td mat-cell *matCellDef="let element">{{ element.name }}</td>
           </ng-container>
 
           <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef>Weight</th>
+            <th mat-header-cell *matHeaderCellDef>Cases Reviewed</th>
             <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
           </ng-container>
 
           <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef>Symbol</th>
+            <th mat-header-cell *matHeaderCellDef>Total Cases</th>
             <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="symbol2">
+            <th mat-header-cell *matHeaderCellDef>% Cases Reviewed</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.weight / element.symbol | percent: '2.2-2' }}
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
