@@ -52,6 +52,10 @@ mat-toolbar {
   margin: 10px 0 0 10px;
 }
 
+.mat-card-header {
+  margin: 0px 0px 20px 0px;
+}
+
 .mat-icon.fas {
   font-size: 20px;
   width: 20px;
@@ -72,4 +76,8 @@ table {
 
 .background-highlight {
   background: rgb($purple-color, 0.3);
+}
+
+.mat-form-field {
+  padding-bottom: 0px !important;
 }
