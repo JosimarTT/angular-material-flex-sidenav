@@ -50,3 +50,15 @@ mat-toolbar {
   color: white;
   margin: 9px 0 0 9px;
 }
+
+.mat-card {
+  margin-bottom: 50px;
+}
+
+.mat-card:not([class*='mat-elevation-z']) {
+  @include mat-elevation(2, $elevation-color, 0.5);
+}
+
+table {
+  width: 100%;
+}
