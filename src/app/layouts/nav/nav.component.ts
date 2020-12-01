@@ -9,6 +9,15 @@ import {
   MatTreeFlattener,
 } from '@angular/material/tree';
 import { Router } from '@angular/router';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+  useAnimation,
+} from '@angular/animations';
+import { fadingAnimation } from 'src/app/core/animations/fading.animation';
 
 interface FoodNode {
   id: number;
@@ -80,6 +89,33 @@ interface ExampleFlatNode {
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
+  animations: [
+    trigger('fading', [
+      transition('* => 1', [
+        useAnimation(fadingAnimation, {
+          params: {
+            opacity: 0,
+            time: '400ms',
+          },
+        }),
+      ]),
+    ]),
+    trigger('slideVertical', [
+      state(
+        '*',
+        style({
+          height: 0,
+        }),
+      ),
+      state(
+        '1',
+        style({
+          height: '*',
+        }),
+      ),
+      transition('* => 1', [animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')]),
+    ]),
+  ],
 })
 export class NavComponent {
   @ViewChild('drawer') drawer: ElementRef;

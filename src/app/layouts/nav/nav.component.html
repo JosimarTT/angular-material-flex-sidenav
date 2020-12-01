@@ -23,6 +23,7 @@
           *matTreeNodeDef="let node"
           matTreeNodePadding
           id="{{ node.id }}"
+          [@fading]="node.level ? 1 : 0"
         >
           <button
             mat-button
