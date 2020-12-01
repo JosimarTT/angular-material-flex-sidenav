@@ -9,13 +9,52 @@
   >
     <!--JEANLUI START-->
     <div>
-      <ul>
-        <li>conten 1</li>
-        <li>conten 2</li>
-        <li>conten 3</li>
-      </ul>
+      <h1 id="sideNav-title">WIC Monitoría</h1>
+      <div fxLayout fxLayoutAlign="flex-start center">
+        <mat-divider
+          fxFlexFill
+          style="height: 20px; margin: 0 5px; width: 90%"
+        ></mat-divider>
+      </div>
+      <div id="sideNav-userName">Josimar J. Tantahuilca Torres</div>
+      <mat-divider></mat-divider>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <button
+            mat-button
+            class="text-light"
+            [ngClass]="{ 'background-highlight': activeNode === node }"
+            (click)="redirect(node.path); activeNode = node"
+          >
+            <i class="fas fa-columns fa-lg"></i>
+            <span class="txtColor">{{ node.name }}</span>
+          </button>
+        </mat-tree-node>
+        <mat-tree-node
+          *matTreeNodeDef="let node; when: hasChild"
+          matTreeNodePadding
+          id="dropdown"
+        >
+          <button
+            class="text-light"
+            mat-button
+            matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name"
+          >
+            <i class="fas fa-th"></i>
+
+            {{ node.name }}
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{
+              treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'
+              }}
+            </mat-icon>
+          </button>
+        </mat-tree-node>
+      </mat-tree>
     </div>
     <!--JEANLUI END-->
+    <!--JOSIMAR ORIGINAL
     <div>
       <h1 id="sideNav-title">WIC Monitoría</h1>
       <div fxLayout fxLayoutAlign="flex-start center">
@@ -57,6 +96,7 @@
         </mat-tree-node>
       </mat-tree>
     </div>
+    -->
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
@@ -88,7 +128,7 @@
         id="navTitle"
         class="color-gray text-light"
         style="margin-left: 1rem; font-size: 1.125rem"
-        >Dashboard</span
+      >Dashboard</span
       >
 
       <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
