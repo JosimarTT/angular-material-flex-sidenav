@@ -11,6 +11,8 @@ import {
 import { Router } from '@angular/router';
 
 interface FoodNode {
+  id: number;
+  icon: string;
   name: string;
   path: string;
   children?: FoodNode[];
@@ -18,19 +20,47 @@ interface FoodNode {
 
 const TREE_DATA: FoodNode[] = [
   {
+    id: 1,
+    icon: '',
     name: 'Dashboard',
     path: '/dashboard',
   },
   {
+    id: 2,
+    icon: '',
     name: 'Case',
     path: '',
     children: [
       {
+        id: 21,
+        icon: '',
         name: 'Import',
         path: '/case/import',
       },
       {
+        id: 22,
+        icon: '',
         name: 'List',
+        path: '/case/list',
+      },
+    ],
+  },
+  {
+    id: 3,
+    icon: '',
+    name: 'Case2',
+    path: '',
+    children: [
+      {
+        id: 31,
+        icon: '',
+        name: 'Import2',
+        path: '/case/import',
+      },
+      {
+        id: 32,
+        icon: '',
+        name: 'List2',
         path: '/case/list',
       },
     ],
@@ -42,6 +72,8 @@ interface ExampleFlatNode {
   name: string;
   path: string;
   level: number;
+  id: number;
+  icon: string;
 }
 
 @Component({
@@ -72,6 +104,8 @@ export class NavComponent {
       name: node.name,
       level,
       path: node.path,
+      id: node.id,
+      icon: node.icon,
     };
   };
 

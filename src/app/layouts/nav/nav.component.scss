@@ -60,7 +60,6 @@ a {
   margin: 22px 0 22px 0;
 }
 
-
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 ////////////////////////////////////////////
@@ -92,10 +91,14 @@ mat-tree-node {
     top: 0;
   }
 }
-mat-tree-node[aria-level="2"] {
+mat-tree-node[aria-level='2'] {
   padding: 0 !important;
   button i {
     font-size: 15px;
     margin-left: 5px;
   }
+}
+
+mat-tree-node[aria-expanded='true'] > button {
+  background-color: rgba($color: black, $alpha: 0.1);
 }
