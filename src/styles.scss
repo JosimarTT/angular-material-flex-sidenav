@@ -12,6 +12,18 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+mat-sidenav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 260px;
+  background: #fff;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
 mat-sidenav-content {
   background-color: $body-color;
 }
@@ -28,7 +40,7 @@ mat-toolbar {
   font-weight: lighter;
 }
 
-.mat-drawer-inner-container {
+mat-sidenav {
   background: $main-color;
   background: linear-gradient(
       0deg,
@@ -84,4 +96,20 @@ table {
 
 .required-text {
   color: red;
+}
+
+mat-tree {
+  button:hover {
+    background: rgba($color: black, $alpha: 0.1);
+  }
+  mat-tree-node button.active {
+    color: white;
+    background-color: rgba($color: $main-color, $alpha: 0.5);
+    @include mat-elevation(2, $elevation-color, 0.1);
+  }
+  mat-nested-tree-node[aria-expanded='true'] {
+    div button {
+      background-color: rgba($color: $elevation-color, $alpha: 0.1);
+    }
+  }
 }

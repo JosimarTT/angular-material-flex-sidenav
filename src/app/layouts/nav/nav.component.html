@@ -18,44 +18,49 @@
       </div>
       <div id="sideNav-userName">Josimar J. Tantahuilca Torres</div>
       <mat-divider></mat-divider>
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <mat-tree-node
-          *matTreeNodeDef="let node"
-          matTreeNodePadding
-          id="{{ node.id }}"
-          [@fading]="node.level ? 1 : 0"
-        >
-          <button
-            mat-button
-            class="text-light"
-            [ngClass]="{ 'background-highlight': activeNode === node }"
-            (click)="redirect(node.path); activeNode = node"
-          >
-            <i class="fas fa-columns fa-lg"></i>
-            <span class="txtColor">{{ node.name }}</span>
-          </button>
+      <mat-tree
+        [dataSource]="dataSource"
+        [treeControl]="treeControl"
+        class="example-tree"
+      >
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+          <li class="mat-tree-node">
+            <button
+              mat-button
+              class="text-light"
+              routerLink="{{ node.path }}"
+              routerLinkActive="active"
+            >
+              <mat-icon fontSet="fas" fontIcon="fa-table"></mat-icon>
+              <span> {{ node.name }}</span>
+            </button>
+          </li>
         </mat-tree-node>
-        <mat-tree-node
-          *matTreeNodeDef="let node; when: hasChild"
-          matTreeNodePadding
-          id="{{ node.id }}"
-        >
-          <button
-            class="text-light"
-            mat-button
-            matTreeNodeToggle
-            [attr.aria-label]="'Toggle ' + node.name"
-          >
-            <i class="fas fa-th"></i>
-
-            {{ node.name }}
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{
-                treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'
-              }}
-            </mat-icon>
-          </button>
-        </mat-tree-node>
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+          <li>
+            <div class="mat-tree-node">
+              <button
+                class="text-light"
+                mat-button
+                matTreeNodeToggle
+                [attr.aria-label]="'toggle ' + node.name"
+              >
+                <mat-icon fontSet="fas" fontIcon="fa-table"></mat-icon>
+                <span>{{ node.name }}</span>
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{
+                    treeControl.isExpanded(node)
+                      ? 'expand_more'
+                      : 'chevron_right'
+                  }}
+                </mat-icon>
+              </button>
+            </div>
+            <ul [@slideVertical]="treeControl.isExpanded(node) ? 'show' : null">
+              <ng-container matTreeNodeOutlet></ng-container>
+            </ul>
+          </li>
+        </mat-nested-tree-node>
       </mat-tree>
     </div>
     <!--JEANLUI END-->

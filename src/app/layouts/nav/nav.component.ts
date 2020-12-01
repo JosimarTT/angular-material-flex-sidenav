@@ -2,11 +2,12 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { FlatTreeControl } from '@angular/cdk/tree';
+import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
+  MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import { Router } from '@angular/router';
 import {
@@ -20,70 +21,24 @@ import {
 import { fadingAnimation } from 'src/app/core/animations/fading.animation';
 
 interface FoodNode {
-  id: number;
-  icon: string;
   name: string;
-  path: string;
+  path?: string;
   children?: FoodNode[];
 }
 
 const TREE_DATA: FoodNode[] = [
   {
-    id: 1,
-    icon: '',
     name: 'Dashboard',
     path: '/dashboard',
   },
   {
-    id: 2,
-    icon: '',
     name: 'Case',
-    path: '',
     children: [
-      {
-        id: 21,
-        icon: '',
-        name: 'Import',
-        path: '/case/import',
-      },
-      {
-        id: 22,
-        icon: '',
-        name: 'List',
-        path: '/case/list',
-      },
-    ],
-  },
-  {
-    id: 3,
-    icon: '',
-    name: 'Case2',
-    path: '',
-    children: [
-      {
-        id: 31,
-        icon: '',
-        name: 'Import2',
-        path: '/case/import',
-      },
-      {
-        id: 32,
-        icon: '',
-        name: 'List2',
-        path: '/case/list',
-      },
+      { name: 'Import', path: '/case/import' },
+      { name: 'List', path: '/case/list' },
     ],
   },
 ];
-
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  path: string;
-  level: number;
-  id: number;
-  icon: string;
-}
 
 @Component({
   selector: 'app-nav',
@@ -108,16 +63,19 @@ interface ExampleFlatNode {
         }),
       ),
       state(
-        '1',
+        'show',
         style({
           height: '*',
         }),
       ),
-      transition('* => 1', [animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')]),
+      transition('* => *', [animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')]),
     ]),
   ],
 })
 export class NavComponent {
+  treeControl = new NestedTreeControl<FoodNode>((node) => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
+
   @ViewChild('drawer') drawer: ElementRef;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -128,31 +86,6 @@ export class NavComponent {
     );
 
   animate = false;
-  activeNode: ExampleFlatNode;
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    (node) => node.level,
-    (node) => node.expandable,
-  );
-
-  private _transformer = (node: FoodNode, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level,
-      path: node.path,
-      id: node.id,
-      icon: node.icon,
-    };
-  };
-
-  treeFlattener = new MatTreeFlattener(
-    this._transformer,
-    (node) => node.level,
-    (node) => node.expandable,
-    (node) => node.children,
-  );
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -161,7 +94,8 @@ export class NavComponent {
     this.dataSource.data = TREE_DATA;
   }
 
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+  hasChild = (_: number, node: FoodNode) =>
+    !!node.children && node.children.length > 0;
 
   toggleAnimate() {
     this.animate = !this.animate;

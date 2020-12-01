@@ -37,9 +37,8 @@ a {
 }
 
 .active {
-  background-color: #ffffff;
+  // background-color: rgba($color: purple, $alpha: 0.1);
   border-radius: 3px;
-  color: white !important;
 }
 
 .mat-tree {
@@ -64,22 +63,77 @@ a {
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 // JEANLUI
-mat-tree-node {
-  width: 100%;
-  justify-content: center;
+// mat-tree-node {
+//   width: 100%;
+//   justify-content: center;
+
+//   button {
+//     width: 90%;
+//     text-align: left;
+//     min-height: 40px;
+//     align-content: center;
+//     display: flex;
+//     align-items: center;
+//   }
+
+//   button i {
+//     font-size: 24px;
+//     margin-right: 15px;
+//   }
+
+//   button .mat-icon-rtl-mirror {
+//     position: absolute;
+//     margin-top: auto;
+//     margin-bottom: auto;
+//     right: 0;
+//     bottom: 0;
+//     top: 0;
+//   }
+// }
+// mat-tree-node[aria-level='2'] {
+//   padding: 0 !important;
+//   button i {
+//     font-size: 15px;
+//     margin-left: 5px;
+//   }
+// }
+
+// mat-tree-node[aria-expanded='true'] > button {
+//   background-color: rgba($color: black, $alpha: 0.1);
+// }
+
+.example-tree ul {
+  overflow: hidden;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.example-tree li {
+  padding: 5px 0 0 0;
+}
+
+mat-tree {
+  ul > mat-tree-node > li {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .mat-icon {
+    font-size: 24px;
+    margin-right: 15px;
+  }
 
   button {
-    width: 90%;
+    width: 100%;
     text-align: left;
     min-height: 40px;
     align-content: center;
     display: flex;
     align-items: center;
-  }
-
-  button i {
-    font-size: 24px;
-    margin-right: 15px;
   }
 
   button .mat-icon-rtl-mirror {
@@ -90,15 +144,4 @@ mat-tree-node {
     bottom: 0;
     top: 0;
   }
-}
-mat-tree-node[aria-level='2'] {
-  padding: 0 !important;
-  button i {
-    font-size: 15px;
-    margin-left: 5px;
-  }
-}
-
-mat-tree-node[aria-expanded='true'] > button {
-  background-color: rgba($color: black, $alpha: 0.1);
 }
