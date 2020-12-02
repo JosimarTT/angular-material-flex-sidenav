@@ -59,49 +59,6 @@ a {
   margin: 22px 0 22px 0;
 }
 
-////////////////////////////////////////////
-////////////////////////////////////////////
-////////////////////////////////////////////
-// JEANLUI
-// mat-tree-node {
-//   width: 100%;
-//   justify-content: center;
-
-//   button {
-//     width: 90%;
-//     text-align: left;
-//     min-height: 40px;
-//     align-content: center;
-//     display: flex;
-//     align-items: center;
-//   }
-
-//   button i {
-//     font-size: 24px;
-//     margin-right: 15px;
-//   }
-
-//   button .mat-icon-rtl-mirror {
-//     position: absolute;
-//     margin-top: auto;
-//     margin-bottom: auto;
-//     right: 0;
-//     bottom: 0;
-//     top: 0;
-//   }
-// }
-// mat-tree-node[aria-level='2'] {
-//   padding: 0 !important;
-//   button i {
-//     font-size: 15px;
-//     margin-left: 5px;
-//   }
-// }
-
-// mat-tree-node[aria-expanded='true'] > button {
-//   background-color: rgba($color: black, $alpha: 0.1);
-// }
-
 .example-tree ul {
   overflow: hidden;
 }
@@ -123,7 +80,7 @@ mat-tree {
     margin-right: 0;
   }
   .mat-icon {
-    font-size: 24px;
+    font-size: 20px;
     margin-right: 15px;
   }
 

@@ -22,6 +22,7 @@ import { fadingAnimation } from 'src/app/core/animations/fading.animation';
 
 interface FoodNode {
   name: string;
+  icon: string;
   path?: string;
   children?: FoodNode[];
 }
@@ -29,13 +30,15 @@ interface FoodNode {
 const TREE_DATA: FoodNode[] = [
   {
     name: 'Dashboard',
+    icon: 'fa-chart-bar',
     path: '/dashboard',
   },
   {
     name: 'Case',
+    icon: 'fa-list-ul',
     children: [
-      { name: 'Import', path: '/case/import' },
-      { name: 'List', path: '/case/list' },
+      { name: 'Import', icon: 'fa-cloud-download-alt', path: '/case/import' },
+      { name: 'List', icon: 'fa-list-ul', path: '/case/list' },
     ],
   },
 ];

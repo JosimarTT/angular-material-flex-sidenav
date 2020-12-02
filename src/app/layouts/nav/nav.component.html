@@ -7,16 +7,17 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <!--JEANLUI START-->
     <div>
-      <h1 id="sideNav-title">WIC Monitoría</h1>
+      <h1 id="sideNav-title" class="text-light color-gray">WIC Monitoría</h1>
       <div fxLayout fxLayoutAlign="flex-start center">
         <mat-divider
           fxFlexFill
           style="height: 20px; margin: 0 5px; width: 90%"
         ></mat-divider>
       </div>
-      <div id="sideNav-userName">Josimar J. Tantahuilca Torres</div>
+      <div id="sideNav-userName" class="text-light color-gray">
+        Josimar J. Tantahuilca Torres
+      </div>
       <mat-divider></mat-divider>
       <mat-tree
         [dataSource]="dataSource"
@@ -27,11 +28,11 @@
           <li class="mat-tree-node">
             <button
               mat-button
-              class="text-light"
+              class="text-light color-gray"
               routerLink="{{ node.path }}"
               routerLinkActive="active"
             >
-              <mat-icon fontSet="fas" fontIcon="fa-table"></mat-icon>
+              <mat-icon fontSet="fas" fontIcon="{{ node.icon }}"></mat-icon>
               <span> {{ node.name }}</span>
             </button>
           </li>
@@ -40,7 +41,7 @@
           <li>
             <div class="mat-tree-node">
               <button
-                class="text-light"
+                class="text-light color-gray"
                 mat-button
                 matTreeNodeToggle
                 [attr.aria-label]="'toggle ' + node.name"
@@ -63,50 +64,6 @@
         </mat-nested-tree-node>
       </mat-tree>
     </div>
-    <!--JEANLUI END-->
-    <!--JOSIMAR ORIGINAL
-    <div>
-      <h1 id="sideNav-title">WIC Monitoría</h1>
-      <div fxLayout fxLayoutAlign="flex-start center">
-        <mat-divider
-          fxFlexFill
-          style="height: 20px; margin: 0 5px; width: 90%"
-        ></mat-divider>
-      </div>
-      <div id="sideNav-userName">Josimar J. Tantahuilca Torres</div>
-      <mat-divider></mat-divider>
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <button
-            mat-button
-            class="text-light"
-            [ngClass]="{ 'background-highlight': activeNode === node }"
-            (click)="redirect(node.path); activeNode = node"
-          >
-            <span class="txtColor">{{ node.name }}</span>
-          </button>
-        </mat-tree-node>
-        <mat-tree-node
-          *matTreeNodeDef="let node; when: hasChild"
-          matTreeNodePadding
-        >
-          <button
-            class="text-light"
-            mat-button
-            matTreeNodeToggle
-            [attr.aria-label]="'Toggle ' + node.name"
-          >
-            {{ node.name }}
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{
-                treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'
-              }}
-            </mat-icon>
-          </button>
-        </mat-tree-node>
-      </mat-tree>
-    </div>
-    -->
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
