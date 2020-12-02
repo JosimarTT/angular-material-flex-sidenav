@@ -13,15 +13,7 @@ body {
 }
 
 mat-sidenav {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  width: 260px;
-  background: #fff;
-  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
-    0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  @include mat-elevation(4, $elevation-color, 0.5);
 }
 
 mat-sidenav-content {
@@ -41,7 +33,6 @@ mat-toolbar {
 }
 
 mat-sidenav {
-  background: $main-color;
   background: linear-gradient(
       0deg,
       rgba($main-color, 0.5) 0%,
